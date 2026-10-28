@@ -711,6 +711,7 @@ public abstract class Base_Class {
     public static void extentsReportStart(String location) {
         extentsReports = new ExtentReports();
         file = new File(location);
+        file.getParentFile().mkdirs();
         ExtentSparkReporter sparkReporter = new ExtentSparkReporter(file);
         extentsReports.attachReporter(sparkReporter);
         extentsReports.setSystemInfo("OS", System.getProperty("os.name"));
@@ -719,8 +720,6 @@ public abstract class Base_Class {
 
     public static void extentsReportTeardown(String location) throws IOException {
         extentsReports.flush();
-        File file = new File(location);
-        Desktop.getDesktop().browse(file.toURI());
     }
 
     public String takeScreenshot() throws IOException {

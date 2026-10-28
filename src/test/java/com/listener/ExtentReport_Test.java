@@ -13,15 +13,11 @@ public class ExtentReport_Test {
 
     @BeforeSuite
     public void extentTestReportStartup(){
-        Base_Class base = new Base_Class() {
-        };
-        base.extentsReportStart(null);
+        Base_Class.extentsReportStart(System.getProperty("user.dir") + "/Reports/index.html");
     }
 
     @AfterSuite
     public void extentTestReportEnd() throws IOException {
-        Base_Class base = new Base_Class() {
-        };
-        base.extentsReportTeardown(null);
+        Base_Class.extentsReportTeardown(System.getProperty("user.dir") + "/Reports/index.html");
     }
 }
