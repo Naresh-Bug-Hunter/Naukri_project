@@ -723,10 +723,14 @@ public abstract class Base_Class {
     }
 
     public String takeScreenshot() throws IOException {
-        TakesScreenshot screenshot=(TakesScreenshot) driver;
+        TakesScreenshot screenshot = (TakesScreenshot) driver;
         String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         File src = screenshot.getScreenshotAs(OutputType.FILE);
-        File dest = new File("Screenshots\\.png" + "_" + timestamp + ".png");
+        File screenshotFolder = new File("Screenshots");
+        if (!screenshotFolder.exists()) {
+            screenshotFolder.mkdirs();
+        }
+        File dest = new File(screenshotFolder, ".png_" + timestamp + ".png");
         FileHandler.copy(src, dest);
         return dest.getAbsolutePath();
     }
